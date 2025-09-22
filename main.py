@@ -1,6 +1,6 @@
 import os
 from typing import Dict, Any
-from langgraph import StateGraph
+from langgraph.graph import StateGraph
 import boto3
 import json
 from dotenv import load_dotenv
