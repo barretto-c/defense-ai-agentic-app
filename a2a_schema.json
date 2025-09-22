@@ -1,0 +1,1 @@
+{"sender": "AnalysisAgent", "receiver": "ReportAgent", "message": {"type": "analysis_result", "payload": "..."}}

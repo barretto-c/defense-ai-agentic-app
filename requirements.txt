@@ -1,0 +1,8 @@
+langgraph
+boto3
+mcp[cli]
+httpx
+transformers
+fastapi
+uvicorn
+python-dotenv
