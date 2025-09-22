@@ -1,0 +1,19 @@
+graph TD
+    A[User Query] --> B[SituationalAnalysis Node]
+    B --> C[invoke_model<br/>AWS Bedrock Claude 3]
+    C --> D[Awareness Output]
+    D --> E[AnomalyDetection Node]
+    E --> F[invoke_model<br/>AWS Bedrock Claude 3]
+    F --> G[Anomalies List]
+    G --> H[ReportGeneration Node]
+    H --> I[invoke_model<br/>AWS Bedrock Claude 3]
+    I --> J[Final Report]
+
+    K[USE_BEDROCK=true] --> C
+    K --> F
+    K --> I
+
+    L[USE_BEDROCK=false] --> M[GPT-2 Fallback]
+    M --> D
+    M --> G
+    M --> J

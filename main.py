@@ -13,14 +13,14 @@ class AgentState(Dict[str, Any]):
     anomalies: list
     report: str
 
-bedrock_client = boto3.client('bedrock-runtime')
+bedrock_client = boto3.client('bedrock-runtime', region_name='us-east-1')
 use_bedrock = os.getenv('USE_BEDROCK', 'true').lower() == 'true'
 
 def invoke_model(prompt: str) -> str:
     if use_bedrock:
         try:
             response = bedrock_client.invoke_model(
-                modelId="anthropic.claude-3-sonnet-20240229-v1:0",
+                modelId="us.anthropic.claude-3-sonnet-20240229-v1:0",
                 body=json.dumps({
                     "anthropic_version": "bedrock-2023-05-31",
                     "max_tokens": 200,
@@ -62,6 +62,6 @@ graph.set_entry_point("SituationalAnalysis")
 app = graph.compile()
 
 if __name__ == "__main__":
-    initial_state = AgentState(query="Analyze battlefield threat", awareness="", anomalies=[], report="")
+    initial_state = AgentState(query="Analyze data security threats", awareness="", anomalies=[], report="")
     result = app.invoke(initial_state)
     print("Result:", result)
